@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @Path("convert")
 public class ConversionService {
 
-    private static final String username = "enxooUser";
+    private static final String username = "enxooUserMS";
     private static final String password = "veryhardtorememberpassword";
 
     @Context
