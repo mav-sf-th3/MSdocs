@@ -36,6 +36,7 @@ public class ConversionService {
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
     public Response getIt(InputStream fileInputStream) {
+		System.out.println("START:request:getIt: " );
 
         if(!isAuthorized(request.getHeader("authorization"))){
             return Response.serverError().entity("Authorization failed.").build();
@@ -53,10 +54,12 @@ public class ConversionService {
             return Response.serverError().entity("Conversion failed...").build();
         }
 
+		System.out.println("END:request:getIt: " );
         return Response.ok().type("application/pdf").entity(pdfResult).build();
     }
 
     private boolean isAuthorized(String header){
+		System.out.println("START:request:isAuthorized: " );
 
         String decoded;
         try{
@@ -71,7 +74,8 @@ public class ConversionService {
         }
 
         String[] credentials = decoded.split(":");
-
+		
+		System.out.println("END:request:isAuthorized: " );
         return (credentials[0].equals(username) && credentials[1].equals(password));
     }
 
